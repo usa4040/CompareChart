@@ -1,27 +1,27 @@
-import pandas as pd
 import datetime as dt
-import numpy as np
-from pandas_datareader import data
+
 import matplotlib.pyplot as plt
+import pandas as pd
+from pandas_datareader import data
 
-x = int(input('start year: '))
-y = int(input('start month: '))
-z = int(input('start day: '))
+s_year = int(input('start year: '))
+s_month = int(input('start month: '))
+s_day = int(input('start day: '))
 
-a = int(input('end year: '))
-b = int(input('end month: '))
-c  =int(input('end day: '))
+e_year = int(input('end year: '))
+e_month = int(input('end month: '))
+e_day  =int(input('end day: '))
 
-start = dt.date(x,y,z)
-end = dt.date(a,b,c)
+start = dt.date(s_year, s_month, s_day)
+end = dt.date(e_year, e_month, e_day)
 
 code1 = input('get_code1: ') + '.JP'
 code2 = input('get_code2: ') + '.JP'
 
-df1 = data.DataReader(code1,'stooq',start,end)
-df2 = data.DataReader(code2,'stooq',start,end)
+stock_df1 = data.DataReader(code1,'stooq',start,end)
+stock_df2 = data.DataReader(code2,'stooq',start,end)
 
 
-df = pd.DataFrame({code1:df1['Close'], code2:df2['Close']})
+df = pd.DataFrame({code1:stock_df1['Close'], code2:stock_df2['Close']})
 df.plot(grid=True)
 plt.show()
